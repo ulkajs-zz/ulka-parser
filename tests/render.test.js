@@ -52,4 +52,14 @@ describe('render funcion', () => {
       expect(render(template)).toBe('Roshan Acharya');
     });
   });
+
+  describe('given escaped tags', () => {
+    test('returns ulka tags', () => {
+      const template = `
+    {%const name = "Roshan Acharya"%}
+    \\{% name %}
+  `;
+      expect(render(template)).toBe('{% name %}');
+    });
+  });
 });
