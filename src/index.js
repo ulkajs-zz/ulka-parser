@@ -1,3 +1,4 @@
 const parse = require('./parse');
+const engine = require('./engine');
 
-module.exports = { parse };
+module.exports = { parse, engine };
