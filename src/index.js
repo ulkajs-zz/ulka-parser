@@ -1,3 +1,3 @@
-const render = require('./render');
+const parse = require('./parse');
 
-module.exports = { render };
+module.exports = { parse };

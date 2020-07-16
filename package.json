@@ -8,6 +8,7 @@
     "eslint": "eslint .",
     "prettier": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",
+    "example:parse": "node examples/parse",
     "prepublish": "npm run eslint && npm test"
   },
   "repository": {
