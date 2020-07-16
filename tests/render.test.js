@@ -38,4 +38,18 @@ describe('render funcion', () => {
       expect(render).toThrow(TypeError);
     });
   });
+
+  describe('given assignment of variable', () => {
+    test('returns empty string on assignment only', () => {
+      expect(render("{% const name = 'Roshan Acharya' %}")).toBe('');
+    });
+
+    test('returns a value assigned', () => {
+      const template = `
+        {% const name = "Roshan Acharya" %}
+        {% name %}
+      `;
+      expect(render(template)).toBe('Roshan Acharya');
+    });
+  });
 });
