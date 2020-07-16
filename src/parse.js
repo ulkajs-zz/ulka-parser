@@ -6,6 +6,12 @@ function parser(ulkaTemplate, values = {}) {
     .replace(/\\?{%(.*?)%}/gs, (...args) => {
       let jsCode = args[1];
 
+      values = {
+        ...values,
+        require,
+        console,
+      };
+
       if (args[0][0] === '\\' && ulkaTemplate[args[2] - 1] !== '\\')
         return args[0].slice(1);
 
@@ -16,7 +22,7 @@ function parser(ulkaTemplate, values = {}) {
       const codeWithoutString = replaceString(jsCode, '');
       const containsEqual = hasEqualSign(codeWithoutString);
 
-      return containsEqual ? '' : result;
+      return containsEqual ? '' : result || '';
     })
     .trim();
 }
