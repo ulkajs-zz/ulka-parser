@@ -11,6 +11,9 @@
     "example:parse": "node examples/parse",
     "prepublish": "npm run eslint && npm test"
   },
+  "bin": {
+    "ulka-parser": "bin/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acharyaroshanji/ulka-parser.git"
