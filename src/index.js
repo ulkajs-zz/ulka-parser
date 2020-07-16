@@ -1,3 +1,4 @@
-const render = require('./render');
+const parse = require('./parse');
+const engine = require('./engine');
 
-module.exports = { render };
+module.exports = { parse, engine };

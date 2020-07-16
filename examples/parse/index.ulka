@@ -1,0 +1,15 @@
+{%
+    const name = "Roshan Acharya"
+    const age = 20
+%}
+
+<html>
+    <head>
+        <title>{% name %}</title>
+    </head>
+
+    <body>
+        <div>Name: {% name %}</div>
+        <div>Age: {% age %}</div>
+    </body>
+</html>

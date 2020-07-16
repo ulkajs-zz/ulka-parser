@@ -1,7 +1,7 @@
 const vm = require('vm');
 const { replaceString, hasEqualSign } = require('./utils');
 
-function render(ulkaTemplate, values = {}) {
+function parser(ulkaTemplate, values = {}) {
   return ulkaTemplate
     .replace(/\\?{%(.*?)%}/gs, (...args) => {
       let jsCode = args[1];
@@ -21,4 +21,4 @@ function render(ulkaTemplate, values = {}) {
     .trim();
 }
 
-module.exports = render;
+module.exports = parser;
