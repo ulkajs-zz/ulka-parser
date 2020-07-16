@@ -1,8 +1,12 @@
 const vm = require('vm');
 
-function render(ulkaTemplate, values) {
+function render(ulkaTemplate, values = {}) {
   return ulkaTemplate.replace(/{%(.*?)%}/gs, (...args) => {
-    return vm.runInNewContext(args[1], values);
+    let jsCode = args[1];
+
+    jsCode = jsCode.replace(/(var |let |const )/gs, '');
+
+    return vm.runInNewContext(jsCode, values);
   });
 }
 

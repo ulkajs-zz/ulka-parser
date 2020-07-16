@@ -9,5 +9,9 @@
   "parserOptions": {
     "ecmaVersion": 11
   },
-  "rules": {}
+  "rules": {
+    "no-unused-vars": "error",
+    "no-empty-function": "error",
+    "no-console": "error"
+  }
 }
