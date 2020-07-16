@@ -15,8 +15,8 @@ describe('utils - replaceStringFunction', () => {
     );
   });
 
-  test('returns string undefined when no second arguement is passed', () => {
-    expect(replaceString(`'I am Roshan'`)).toBe('undefined');
+  test('returns empty string when no second arguement is passed', () => {
+    expect(replaceString(`'I am Roshan'`)).toBe('');
   });
 
   test('check all type of strings', () => {

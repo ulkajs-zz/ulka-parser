@@ -3,6 +3,8 @@
     const age = 20
 %}
 
+{% console.log("Hey") %}
+
 <html>
     <head>
         <title>{% name %}</title>
