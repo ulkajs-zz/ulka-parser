@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 const path = require('path');
 const fs = require('fs');
 const parse = require('../src/parse');
@@ -35,17 +37,17 @@ if (fs.statSync(templatePath).isDirectory()) {
 
     createDirectories(path.parse(newOutputPath).dir).then(_ => {
       generateHtml(file, newOutputPath);
+      console.log('>> Html File generated: ' + newOutputPath);
     });
   });
 } else {
   createDirectories(path.parse(outputPath).dir).then(_ => {
-    generateHtml(
-      templatePath,
-      path.join(
-        path.parse(outputPath).dir,
-        path.parse(templatePath).name + '.html',
-      ),
+    const newOutputPath = path.join(
+      path.parse(outputPath).dir,
+      path.parse(templatePath).name + '.html',
     );
+    generateHtml(templatePath, newOutputPath);
+    console.log('>> Html File generated: ' + newOutputPath);
   });
 }
 

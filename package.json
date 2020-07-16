@@ -9,6 +9,7 @@
     "prettier": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",
     "example:parse": "node examples/parse",
+    "example:cli": "node bin/index.js --template examples/cli --output examples/cli/output",
     "prepublishOnly": "npm run eslint && npm test"
   },
   "bin": {
