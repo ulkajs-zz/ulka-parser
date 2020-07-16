@@ -1,6 +1,6 @@
 {
   "name": "ulka-parser",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Templating engine for ulka static site generator",
   "main": "src/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "prettier": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",
     "example:parse": "node examples/parse",
-    "prepublish": "npm run eslint && npm test"
+    "prepublishOnly": "npm run eslint && npm test"
   },
   "bin": {
     "ulka-parser": "bin/index.js"
