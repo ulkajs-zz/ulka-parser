@@ -3,8 +3,10 @@ const { replaceString, hasEqualSign } = require('./utils');
 
 function render(ulkaTemplate, values = {}) {
   return ulkaTemplate
-    .replace(/{%(.*?)%}/gs, (...args) => {
+    .replace(/\\?{%(.*?)%}/gs, (...args) => {
       let jsCode = args[1];
+
+      if (args[0][0] === '\\') return args[0].slice(1);
 
       jsCode = jsCode.replace(/(var |let |const )/gs, '');
 
