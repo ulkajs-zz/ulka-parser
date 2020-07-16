@@ -1,4 +1,5 @@
 /tests
+/examples
 .prettierrc
 .prettierignore
 .eslintignore
