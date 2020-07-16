@@ -5,16 +5,23 @@ const fs = require('fs');
 const parse = require('../src/parse');
 
 const args = process.argv.splice(2);
+
 const getArgsValue = option => {
   const indexOfOption = args.indexOf(option);
   const indexOfValue = indexOfOption >= 0 ? indexOfOption + 1 : indexOfOption;
   return args[indexOfValue];
 };
 
-const templatePath = path.join(process.cwd(), getArgsValue('--template'));
+const argsOutputValue = getArgsValue('--output') || getArgsValue('-o');
+const argsTemplateValue = getArgsValue('--template') || getArgsValue('-t');
+
+if (!argsTemplateValue)
+  throw new Error('Please provide templates path (--template || -t) ');
+
+const templatePath = path.join(process.cwd(), argsTemplateValue);
 const outputPath = path.join(
   process.cwd(),
-  getArgsValue('--output') || getArgsValue('--template'),
+  argsOutputValue || argsTemplateValue,
 );
 
 if (fs.statSync(templatePath).isDirectory()) {
