@@ -1,0 +1,5 @@
+/tests
+.prettierrc
+.prettierignore
+.eslintignore
+.eslintrc.json

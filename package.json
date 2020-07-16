@@ -4,7 +4,11 @@
   "description": "Templating engine for ulka static site generator",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "eslint": "eslint .",
+    "prettier": "prettier --write \"**/*.js\"",
+    "lint-staged": "lint-staged",
+    "prepublish": "npm run eslint && npm test"
   },
   "repository": {
     "type": "git",
@@ -18,6 +22,25 @@
   "homepage": "https://github.com/acharyaroshanji/ulka-parser#readme",
   "dependencies": {},
   "devDependencies": {
-    "jest": "^26.1.0"
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  },
+  "lint-staged": {
+    "*.{js}": "eslint --cache --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged && npm run prettier"
+    }
   }
 }

@@ -1,4 +1,4 @@
-const vm = require("vm");
+const vm = require('vm');
 
 function render(ulkaTemplate, values) {
   return ulkaTemplate.replace(/{%(.*?)%}/gs, (...args) => {

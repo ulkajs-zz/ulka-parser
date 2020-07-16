@@ -1,3 +1,3 @@
-const render = require("./render");
+const render = require('./render');
 
 module.exports = { render };
