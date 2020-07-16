@@ -61,5 +61,11 @@ describe('render funcion', () => {
   `;
       expect(render(template)).toBe('{% name %}');
     });
+
+    test('returns value with \\ should escape the escape', () => {
+      expect(render('\\\\{% name %}', { name: 'Roshan Acharya' })).toBe(
+        '\\Roshan Acharya',
+      );
+    });
   });
 });
