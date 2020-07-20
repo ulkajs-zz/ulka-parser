@@ -1,14 +1,18 @@
 const vm = require('vm');
 const { replaceString, hasEqualSign } = require('./utils');
 
-function parser(ulkaTemplate, values = {}) {
+const defaultOptions = {
+  base: '',
+};
+
+function parser(ulkaTemplate, values = {}, options = defaultOptions) {
   return ulkaTemplate
     .replace(/\\?{%(.*?)%}/gs, (...args) => {
       let jsCode = args[1];
 
       values = {
         ...values,
-        require,
+        // require,
         console,
       };
 
