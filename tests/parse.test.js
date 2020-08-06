@@ -68,4 +68,12 @@ describe('parse funcion', () => {
       );
     });
   });
+
+  describe('given a statement with assignment and equal tags', () => {
+    test('should return roshan acharya', () => {
+      expect(parse(`{%= const name = "Roshan Acharya"  %}`)).toBe(
+        'Roshan Acharya',
+      );
+    });
+  });
 });

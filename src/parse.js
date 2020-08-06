@@ -1,4 +1,6 @@
 const vm = require('vm');
+const path = require('path');
+const fs = require('fs');
 const { replaceString, hasEqualSign } = require('./utils');
 
 const defaultOptions = {
@@ -6,29 +8,50 @@ const defaultOptions = {
 };
 
 function parser(ulkaTemplate, values = {}, options = defaultOptions) {
-  return ulkaTemplate
-    .replace(/\\?{%(.*?)%}/gs, (...args) => {
-      let jsCode = args[1];
+  try {
+    return ulkaTemplate
+      .replace(/\\?{%(.*?)%}/gs, (...args) => {
+        let jsCode = args[1];
 
-      values = {
-        ...values,
-        // require,
-        console,
-      };
+        values = {
+          ...values,
+          require: reqPath => {
+            const rPath = path.join(options.base, reqPath);
+            if (fs.existsSync(rPath)) return require(rPath);
+            return require(rPath);
+          },
+          console,
+        };
 
-      if (args[0][0] === '\\' && ulkaTemplate[args[2] - 1] !== '\\')
-        return args[0].slice(1);
+        /*
+        If first index is equal sign then remove the equal sign
+      */
+        const containsEqualsInFirstIndex = jsCode[0] === '=';
+        if (containsEqualsInFirstIndex) jsCode = jsCode.substr(1);
 
-      jsCode = jsCode.replace(/(var |let |const )/gs, '');
+        /*
+        - {% sth = "roshan" %}
+        - \{% sth %} => {% sth %}
+        - \\{% sth %} => \{% "roshan" %}
+       */
+        if (args[0][0] === '\\' && ulkaTemplate[args[2] - 1] !== '\\')
+          return args[0].slice(1);
 
-      const result = vm.runInNewContext(jsCode, values);
+        jsCode = jsCode.replace(/(var |let |const )/gs, '');
 
-      const codeWithoutString = replaceString(jsCode, '');
-      const containsEqual = hasEqualSign(codeWithoutString);
+        const result = vm.runInNewContext(jsCode, values);
 
-      return containsEqual ? '' : result || '';
-    })
-    .trim();
+        const codeWithoutString = replaceString(jsCode, '');
+        const containsEqual = hasEqualSign(codeWithoutString);
+        const shouldPrintResult = !containsEqual || containsEqualsInFirstIndex;
+
+        return !shouldPrintResult ? '' : result || '';
+      })
+      .trim();
+  } catch (e) {
+    console.log(`Ulka Praser Error: `, e.message);
+    throw e;
+  }
 }
 
 module.exports = parser;
