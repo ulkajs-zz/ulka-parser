@@ -1,3 +1,3 @@
-{% const page = "index" %}
+{% const page = "about" %}
 
 {% page %}

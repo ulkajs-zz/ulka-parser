@@ -2,7 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const parse = require('../src/parse');
+const parseUlka = require('../src/parse');
 
 const args = process.argv.splice(2);
 
@@ -34,8 +34,9 @@ if (fs.statSync(templatePath).isDirectory()) {
       .replace('.ulka', '.html');
 
     createDirectories(path.parse(newOutputPath).dir).then(_ => {
-      generateHtml(file, newOutputPath);
-      console.log('>> Html File generated: ' + newOutputPath);
+      generateHtml(file, newOutputPath).then(_ => {
+        console.log('>> Html File generated: ' + newOutputPath);
+      });
     });
   });
 } else {
@@ -44,15 +45,16 @@ if (fs.statSync(templatePath).isDirectory()) {
       path.parse(outputPath).dir,
       path.parse(templatePath).name + '.html',
     );
-    generateHtml(templatePath, newOutputPath);
-    console.log('>> Html File generated: ' + newOutputPath);
+    generateHtml(templatePath, newOutputPath).then(_ => {
+      console.log('>> Html File generated: ' + newOutputPath);
+    });
   });
 }
 
-function generateHtml(templatePath, outputPath) {
+async function generateHtml(templatePath, outputPath) {
   const ulkaTemplate = fs.readFileSync(templatePath, 'utf-8');
-  const htmlTemplate = parse(ulkaTemplate);
-  fs.writeFileSync(outputPath, htmlTemplate);
+  const htmlTemplate = await parseUlka(ulkaTemplate);
+  fs.writeFileSync(outputPath, htmlTemplate.trim());
 }
 
 async function createDirectories(pathname) {

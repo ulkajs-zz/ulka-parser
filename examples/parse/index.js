@@ -7,6 +7,6 @@ const ulkaTemplate = fs.readFileSync(
   'utf-8',
 );
 
-const parsedHtml = ulkaParser.parse(ulkaTemplate);
-
-fs.writeFileSync(path.join(__dirname, 'index.html'), parsedHtml);
+ulkaParser.parse(ulkaTemplate).then(html => {
+  fs.writeFileSync(path.join(__dirname, 'index.html'), html.trim());
+});
