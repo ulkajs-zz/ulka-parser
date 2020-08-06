@@ -69,11 +69,17 @@ describe('parse funcion', () => {
     });
   });
 
-  describe('given a statement with assignment and equal tags', () => {
+  describe('given a statement with assignment with equal tags', () => {
     test('should return roshan acharya', () => {
       expect(parse(`{%= const name = "Roshan Acharya"  %}`)).toBe(
         'Roshan Acharya',
       );
+    });
+  });
+
+  describe('given a variable with minus tags', () => {
+    test('should return empty string', () => {
+      expect(parse(`{%- name  %}`, { name: 'Roshan Acharya' })).toBe('');
     });
   });
 });

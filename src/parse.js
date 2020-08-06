@@ -23,11 +23,12 @@ function parser(ulkaTemplate, values = {}, options = defaultOptions) {
           console,
         };
 
-        /*
-        If first index is equal sign then remove the equal sign
-      */
+        // If first index is equal sign then remove  equal or minus sign
         const containsEqualsInFirstIndex = jsCode[0] === '=';
-        if (containsEqualsInFirstIndex) jsCode = jsCode.substr(1);
+        const containsMinusInFirstIndex = jsCode[0] === '-';
+
+        if (containsEqualsInFirstIndex || containsMinusInFirstIndex)
+          jsCode = jsCode.substr(1);
 
         /*
         - {% sth = "roshan" %}
@@ -43,7 +44,9 @@ function parser(ulkaTemplate, values = {}, options = defaultOptions) {
 
         const codeWithoutString = replaceString(jsCode, '');
         const containsEqual = hasEqualSign(codeWithoutString);
-        const shouldPrintResult = !containsEqual || containsEqualsInFirstIndex;
+        const shouldPrintResult =
+          (!containsEqual || containsEqualsInFirstIndex) &&
+          !containsMinusInFirstIndex;
 
         return !shouldPrintResult ? '' : result || '';
       })

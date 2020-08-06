@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-console */
-
 const path = require('path');
 const fs = require('fs');
 const parse = require('../src/parse');
@@ -58,9 +56,14 @@ function generateHtml(templatePath, outputPath) {
 }
 
 async function createDirectories(pathname) {
-  return await fs.promises.mkdir(pathname, {
-    recursive: true,
-  });
+  try {
+    return await fs.promises.mkdir(pathname, {
+      recursive: true,
+    });
+  } catch (e) {
+    console.log('Error Creating Directories: ', e.message);
+    throw e;
+  }
 }
 
 function getAllFiles(dirPath, ext, arrayOfFiles) {
