@@ -12,6 +12,6 @@
   "rules": {
     "no-unused-vars": "error",
     "no-empty-function": "error",
-    "no-console": "error"
+    "no-console": "off"
   }
 }

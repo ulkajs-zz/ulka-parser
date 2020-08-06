@@ -18,7 +18,7 @@ function parser(ulkaTemplate, values = {}, options = defaultOptions) {
           require: reqPath => {
             const rPath = path.join(options.base, reqPath);
             if (fs.existsSync(rPath)) return require(rPath);
-            return require(rPath);
+            return require(reqPath);
           },
           console,
         };
