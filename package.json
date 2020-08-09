@@ -1,6 +1,6 @@
 {
   "name": "ulka-parser",
-  "version": "0.2.8-rc.1",
+  "version": "0.2.8-rc.2",
   "description": "Templating engine for ulka static site generator",
   "main": "src/index.js",
   "scripts": {

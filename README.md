@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="600" src="https://i.imgur.com/X1aElpL.png" alt="logo">
+    <img src="https://i.imgur.com/X1aElpL.png" alt="logo">
 </p>
 <p align="center">
 <a href="https://www.npmjs.com/package/ulka-parser"><img alt="NPM" src="https://img.shields.io/npm/v/ulka-parser?style=for-the-badge&labelColor=black&color=darkred&logo=npm&label=npm" /></a>&nbsp;
