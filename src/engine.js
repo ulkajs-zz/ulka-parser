@@ -9,11 +9,11 @@ const engine = globalOptions => {
       const parsed = await parse(
         content,
         { ...globalOptions, ...options },
-        { base: path.dirname(filePath) },
+        { base: path.dirname(filePath), logError: false },
       );
       return callback(null, parsed);
     } catch (error) {
-      console.log(error.message);
+      console.log('>> ', error.message);
       throw error;
     }
   };

@@ -5,6 +5,7 @@ const { replaceString, hasEqualSign, replaceAsync } = require('./utils');
 
 const defaultOptions = {
   base: process.cwd(),
+  logError: true,
 };
 
 async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
@@ -15,7 +16,7 @@ async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
       parseCallback(ulkaTemplate, values, options),
     );
   } catch (e) {
-    console.log(e.message);
+    options.logError && console.log('>> ', e.message);
     throw e;
   }
 }
@@ -25,6 +26,7 @@ const parseCallback = (ulkaTemplate, values, options) => async (...args) => {
 
   values = {
     require: reqPath => {
+      options.base = path.isAbsolute(reqPath) ? process.cwd() : options.base;
       const rPath = path.join(options.base, reqPath);
       if (fs.existsSync(rPath)) return require(rPath);
       return require(reqPath);
