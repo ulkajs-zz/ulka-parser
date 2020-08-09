@@ -4,7 +4,7 @@ const fs = require('fs');
 const { replaceString, hasEqualSign, replaceAsync } = require('./utils');
 
 const defaultOptions = {
-  base: '',
+  base: process.cwd(),
 };
 
 async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
