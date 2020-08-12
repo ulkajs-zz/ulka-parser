@@ -21,7 +21,7 @@ describe('parse funcion', () => {
     });
 
     test("returns '2,4,6' when [1, 2, 3].map(e => e*2) is called inside ulka tags with no context", async () => {
-      expect(await parse('{% [1, 2, 3].map(e => e * 2) %}')).toBe('2,4,6');
+      expect(await parse('{% [1, 2, 3].map(e => e * 2) %}')).toBe('246');
     });
   });
 

@@ -60,7 +60,9 @@ const parseCallback = (ulkaTemplate, values, options) => async (...args) => {
     (!containsEqual || containsEqualsInFirstIndex) &&
     !containsMinusInFirstIndex;
 
-  const dataToReturn = await result;
+  let dataToReturn = await result;
+
+  if (Array.isArray(dataToReturn)) dataToReturn = dataToReturn.join('');
 
   return !shouldPrintResult ? '' : dataToReturn || '';
 };
