@@ -4,7 +4,7 @@
   "description": "Templating engine for ulka static site generator",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "eslint": "eslint .",
     "prettier": "prettier --write \"**/*.js\"",
     "lint-staged": "lint-staged",

@@ -39,6 +39,12 @@ describe('parse funcion', () => {
     });
   });
 
+  describe('given undefined only', () => {
+    test('should return empty string', async () => {
+      expect(await parse(`{% undefined %}`)).toBe('');
+    });
+  });
+
   describe('given assignment of variable', () => {
     test('returns empty string on assignment only', async () => {
       expect(await parse("{% const name = 'Roshan Acharya' %}")).toBe('');
@@ -80,6 +86,30 @@ describe('parse funcion', () => {
   describe('given a variable with minus tags', () => {
     test('should return empty string', async () => {
       expect(await parse(`{%- name  %}`, { name: 'Roshan Acharya' })).toBe('');
+    });
+  });
+
+  describe('given a require syntax', () => {
+    test('should require the file', async () => {
+      expect(await parse(`{% (require('/src/index.js')) %}`)).toBe(
+        '[object Object]',
+      );
+    });
+
+    test('should require the file, basepath provided', async () => {
+      expect(
+        await parse(
+          `{% (require('src/index.js')) %}`,
+          {},
+          { base: process.cwd() },
+        ),
+      ).toBe('[object Object]');
+    });
+
+    test('should throw the error', async () => {
+      expect(
+        async () => await parse(`{% require('unknown_package') %}`, {}),
+      ).rejects.toThrow(Error);
     });
   });
 });
