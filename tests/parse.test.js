@@ -107,9 +107,9 @@ describe('parse funcion', () => {
     });
 
     test('should throw the error', async () => {
-      expect(
-        async () => await parse(`{% require('unknown_package') %}`, {}),
-      ).rejects.toThrow(Error);
+      expect(parse(`{% require('unknown_package') %}`, {})).rejects.toThrow(
+        "Cannot find module 'unknown_package' from 'src/parse.js'",
+      );
     });
   });
 });
