@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acharyaroshanji/ulka-parser.git"
+    "url": "git+https://github.com/ulkajs/ulka-parser.git"
   },
   "author": "Roshan Acharya",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/acharyaroshanji/ulka-parser/issues"
+    "url": "https://github.com/ulkajs/ulka-parser/issues"
   },
-  "homepage": "https://github.com/acharyaroshanji/ulka-parser#readme",
+  "homepage": "https://github.com/ulkajs/ulka-parser#readme",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^7.4.0",
