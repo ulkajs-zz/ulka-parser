@@ -13,7 +13,7 @@ async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
     return await replaceAsync(
       ulkaTemplate,
       /\\?{%(.*?)%}/gs,
-      parseCallback(ulkaTemplate, values, options),
+      replaceCallback(ulkaTemplate, values, options),
     );
   } catch (e) {
     options.logError && console.log('>> ', e.message);
@@ -21,7 +21,7 @@ async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
   }
 }
 
-const parseCallback = (ulkaTemplate, values, options) => async (...args) => {
+const replaceCallback = (ulkaTemplate, values, options) => async (...args) => {
   let jsCode = args[1];
 
   values = {
