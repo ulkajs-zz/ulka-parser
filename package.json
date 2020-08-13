@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "eslint": "eslint .",
-    "prettier": "prettier --write \"**/*.js\"",
+    "prettier": "prettier \"**/*.js\"",
+    "prettier:write": "prettier --write \"**/*.js\"",
+    "eslint:fix": "eslint . --fix",
     "lint-staged": "lint-staged",
     "example:parse": "node examples/parse",
     "example:cli": "node bin/index.js --template examples/cli --output examples/cli/output",
@@ -41,7 +43,7 @@
     "prettier": "^2.0.5"
   },
   "lint-staged": {
-    "*.{js}": "eslint --cache --fix"
+    "*.{js}": "eslint --cache"
   },
   "husky": {
     "hooks": {
