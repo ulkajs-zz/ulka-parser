@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { replaceString, hasEqualSign, replaceAsync } from './utils';
 
-type defaultOptionsType = {
+export type defaultOptionsType = {
   base?: string;
   logError?: boolean;
 };
