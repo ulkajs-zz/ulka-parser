@@ -1,8 +1,13 @@
 /tests
 /examples
+/.github
+/coverge
+/src
 .prettierrc
 .prettierignore
 .eslintignore
 .eslintrc.json
 .huskyrc.json
 .lintstagedrc
+jest.config.js
+tsconfig.json
