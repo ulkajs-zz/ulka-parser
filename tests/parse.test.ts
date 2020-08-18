@@ -1,4 +1,4 @@
-const parse = require('../src/parse');
+import parse from '../src/parse';
 
 describe('parse funcion', () => {
   describe('given a ulka template', () => {
@@ -19,7 +19,6 @@ describe('parse funcion', () => {
         await parse('{% undeclaredVariable %}');
       }).rejects.toThrow('undeclaredVariable is not defined');
     });
-
     test("returns '2,4,6' when [1, 2, 3].map(e => e*2) is called inside ulka tags with no context", async () => {
       expect(await parse('{% [1, 2, 3].map(e => e * 2) %}')).toBe('246');
     });
@@ -91,7 +90,7 @@ describe('parse funcion', () => {
 
   describe('given a require syntax', () => {
     test('should require the file', async () => {
-      expect(await parse(`{% (require('/src/index.js')) %}`)).toBe(
+      expect(await parse(`{% (require('/src/index.ts')) %}`)).toBe(
         '[object Object]',
       );
     });
@@ -99,7 +98,7 @@ describe('parse funcion', () => {
     test('should require the file, basepath provided', async () => {
       expect(
         await parse(
-          `{% (require('src/index.js')) %}`,
+          `{% (require('src/index.ts')) %}`,
           {},
           { base: process.cwd() },
         ),

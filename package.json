@@ -29,6 +29,8 @@
   "homepage": "https://github.com/ulkajs/ulka-parser#readme",
   "dependencies": {},
   "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "^14.6.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
@@ -40,7 +42,9 @@
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.2.0",
+    "typescript": "^3.9.7"
   },
   "lint-staged": {
     "*.{js}": "eslint --cache"

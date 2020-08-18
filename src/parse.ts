@@ -1,14 +1,23 @@
-const vm = require('vm');
-const path = require('path');
-const fs = require('fs');
-const { replaceString, hasEqualSign, replaceAsync } = require('./utils');
+import vm from 'vm';
+import path from 'path';
+import fs from 'fs';
+import { replaceString, hasEqualSign, replaceAsync } from './utils';
+
+type defaultOptionsType = {
+  base?: string;
+  logError?: boolean;
+};
 
 const defaultOptions = {
   base: process.cwd(),
   logError: true,
 };
 
-async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
+async function parser(
+  ulkaTemplate: string,
+  values = {},
+  options: defaultOptionsType = defaultOptions,
+) {
   try {
     return await replaceAsync(
       ulkaTemplate,
@@ -21,11 +30,15 @@ async function parser(ulkaTemplate, values = {}, options = defaultOptions) {
   }
 }
 
-const replaceCallback = (ulkaTemplate, values, options) => async (...args) => {
+const replaceCallback = (
+  ulkaTemplate: string,
+  values: any,
+  options: any,
+) => async (...args: any[]) => {
   let jsCode = args[1];
 
   values = {
-    require: reqPath => {
+    require: (reqPath: string) => {
       options.base = path.isAbsolute(reqPath) ? process.cwd() : options.base;
       const rPath = path.join(options.base, reqPath);
       if (fs.existsSync(rPath)) return require(rPath);
@@ -67,4 +80,4 @@ const replaceCallback = (ulkaTemplate, values, options) => async (...args) => {
   return !shouldPrintResult ? '' : dataToReturn || '';
 };
 
-module.exports = parser;
+export default parser;
