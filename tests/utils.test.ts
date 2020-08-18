@@ -1,4 +1,4 @@
-const { replaceString, hasEqualSign } = require('../src/utils');
+import { replaceString, hasEqualSign } from '../src/utils';
 
 describe('utils - replaceStringFunction', () => {
   test('returns empty string on given string only', () => {

@@ -1,9 +1,9 @@
-const path = require('path');
-const fs = require('fs');
-const parse = require('./parse');
+import path from 'path';
+import fs from 'fs';
+import parse from './parse';
 
-const engine = globalOptions => {
-  return async (filePath, options, callback) => {
+const engine = (globalOptions: any) => {
+  return async (filePath: string, options: any, callback: Function) => {
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
       const parsed = await parse(
@@ -19,4 +19,4 @@ const engine = globalOptions => {
   };
 };
 
-module.exports = engine;
+export default engine;

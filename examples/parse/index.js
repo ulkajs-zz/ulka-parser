@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const ulkaParser = require('../../src/index');
+const ulkaParser = require('../../dist/index');
 
 const ulkaTemplate = fs.readFileSync(
   path.join(__dirname, 'index.ulka'),

@@ -1,6 +1,9 @@
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: ['src/parse.js', 'src/utils.js', 'src/index.js'],
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  collectCoverageFrom: ['src/parse.ts', 'src/utils.ts', 'src/index.ts'],
   coverageThreshold: {
     global: {
       branches: 100,

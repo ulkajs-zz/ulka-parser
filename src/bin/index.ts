@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const path = require('path');
-const fs = require('fs');
-const parseUlka = require('../src/parse');
+import path from 'path';
+import fs from 'fs';
+import parseUlka from '../parse';
 
 const args = process.argv.splice(2);
 
-const getArgsValue = option => {
+const getArgsValue = (option: string) => {
   const indexOfOption = args.indexOf(option);
   const indexOfValue = indexOfOption >= 0 ? indexOfOption + 1 : indexOfOption;
   return args[indexOfValue];
@@ -51,13 +51,13 @@ if (fs.statSync(templatePath).isDirectory()) {
   });
 }
 
-async function generateHtml(templatePath, outputPath) {
+async function generateHtml(templatePath: string, outputPath: string) {
   const ulkaTemplate = fs.readFileSync(templatePath, 'utf-8');
   const htmlTemplate = await parseUlka(ulkaTemplate);
   fs.writeFileSync(outputPath, htmlTemplate.trim());
 }
 
-async function createDirectories(pathname) {
+async function createDirectories(pathname: string) {
   try {
     return await fs.promises.mkdir(pathname, {
       recursive: true,
@@ -68,10 +68,12 @@ async function createDirectories(pathname) {
   }
 }
 
-function getAllFiles(dirPath, ext, arrayOfFiles) {
+function getAllFiles(
+  dirPath: string,
+  ext: string,
+  arrayOfFiles: string[] = [],
+) {
   const files = fs.readdirSync(dirPath);
-
-  arrayOfFiles = arrayOfFiles || [];
 
   files.forEach(file => {
     const pathTo = path.join(dirPath, file);
