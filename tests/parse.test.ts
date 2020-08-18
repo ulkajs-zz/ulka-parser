@@ -34,7 +34,8 @@ describe('parse funcion', () => {
 
   describe('given nothing', () => {
     test('throws a type error', async () => {
-      expect(parse).rejects.toThrow(TypeError);
+      // @ts-ignore
+      expect(parse()).rejects.toThrow(TypeError);
     });
   });
 
@@ -107,7 +108,7 @@ describe('parse funcion', () => {
 
     test('should throw the error', async () => {
       expect(parse(`{% require('unknown_package') %}`, {})).rejects.toThrow(
-        "Cannot find module 'unknown_package' from 'src/parse.js'",
+        "Cannot find module 'unknown_package' from 'src/parse.ts'",
       );
     });
   });
