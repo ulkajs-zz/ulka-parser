@@ -1,6 +1,6 @@
 {
   "name": "ulka-parser",
-  "version": "0.2.9",
+  "version": "0.2.10-rc.1",
   "description": "Templating engine for ulka static site generator",
   "main": "dist/index.js",
   "type": "dist/index.d.ts",
@@ -8,8 +8,8 @@
     "test": "jest",
     "build": "tsc",
     "eslint": "eslint .",
-    "prettier": "prettier \"**/*.js\"",
-    "prettier:write": "prettier --write \"**/*.js\"",
+    "prettier": "prettier \"**/*.ts\"",
+    "prettier:write": "prettier --write \"**/*.ts\"",
     "eslint:fix": "eslint . --fix",
     "lint-staged": "lint-staged",
     "example:parse": "node examples/parse",
@@ -47,13 +47,5 @@
     "prettier": "^2.0.5",
     "ts-jest": "^26.2.0",
     "typescript": "^3.9.7"
-  },
-  "lint-staged": {
-    "*.{ts}": "eslint --cache"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged && npm run test"
-    }
   }
 }
