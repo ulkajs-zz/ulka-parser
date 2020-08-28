@@ -55,11 +55,11 @@ const replaceCallback = (
   if (containsEqualsInFirstIndex || containsMinusInFirstIndex)
     jsCode = jsCode.substr(1);
 
-  /*
-  - {% sth = "roshan" %}
-  - \{% sth %} => {% sth %}
-  - \\{% sth %} => \{% "roshan" %}
- */
+  /**
+   * {% let sth = "Ulka" %}
+   * if /{% sth %}  returns {% sth %} (/ escapes the syntax)
+   * if //{% sth %} returns /Ulka (first slash escapes the second slash )
+   */
   if (args[0][0] === '\\' && ulkaTemplate[args[2] - 1] !== '\\')
     return args[0].slice(1);
 
