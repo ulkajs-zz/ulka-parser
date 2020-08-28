@@ -75,20 +75,6 @@ describe('parse funcion', () => {
     });
   });
 
-  describe('given a statement with assignment with equal tags', () => {
-    test('should return roshan acharya', async () => {
-      expect(await parse(`{%= const name = "Roshan Acharya"  %}`)).toBe(
-        'Roshan Acharya',
-      );
-    });
-  });
-
-  describe('given a variable with minus tags', () => {
-    test('should return empty string', async () => {
-      expect(await parse(`{%- name  %}`, { name: 'Roshan Acharya' })).toBe('');
-    });
-  });
-
   describe('given a require syntax', () => {
     test('should require the file', async () => {
       expect(await parse(`{% (require('/src/index.ts')) %}`)).toBe(
@@ -110,6 +96,17 @@ describe('parse funcion', () => {
       expect(parse(`{% require('unknown_package') %}`, {})).rejects.toThrow(
         "Cannot find module 'unknown_package' from 'src/parse.ts'",
       );
+    });
+  });
+
+  describe('destructuring support', () => {
+    test('should return the expected value', async () => {
+      expect(
+        await parse(`{%
+          const {name, age} = {name: "Roshan", age: 20}
+          name
+        %}`),
+      ).toEqual('Roshan');
     });
   });
 });

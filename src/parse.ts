@@ -1,7 +1,7 @@
 import vm from 'vm';
 import path from 'path';
 import fs from 'fs';
-import { replaceString, hasEqualSign, replaceAsync } from './utils';
+import { replaceAsync } from './utils';
 
 export type defaultOptionsType = {
   base?: string;
@@ -48,13 +48,6 @@ const replaceCallback = (
     console,
   };
 
-  // If first index is equal sign then remove  equal or minus sign
-  const containsEqualsInFirstIndex = jsCode[0] === '=';
-  const containsMinusInFirstIndex = jsCode[0] === '-';
-
-  if (containsEqualsInFirstIndex || containsMinusInFirstIndex)
-    jsCode = jsCode.substr(1);
-
   /**
    * {% let sth = "Ulka" %}
    * if /{% sth %}  returns {% sth %} (/ escapes the syntax)
@@ -63,21 +56,15 @@ const replaceCallback = (
   if (args[0][0] === '\\' && ulkaTemplate[args[2] - 1] !== '\\')
     return args[0].slice(1);
 
-  jsCode = jsCode.replace(/(var |let |const )/gs, '');
+  jsCode = jsCode.replace(/(let |const )/gs, 'var ');
 
   const result = vm.runInNewContext(jsCode, values);
-
-  const codeWithoutString = replaceString(jsCode, '');
-  const containsEqual = hasEqualSign(codeWithoutString);
-  const shouldPrintResult =
-    (!containsEqual || containsEqualsInFirstIndex) &&
-    !containsMinusInFirstIndex;
 
   let dataToReturn = await result;
 
   if (Array.isArray(dataToReturn)) dataToReturn = dataToReturn.join('');
 
-  return !shouldPrintResult ? '' : dataToReturn || '';
+  return dataToReturn || '';
 };
 
 export default parser;
