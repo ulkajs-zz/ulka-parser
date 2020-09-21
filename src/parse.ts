@@ -49,7 +49,7 @@ const replaceCallback = (
 
       if (['.js', '.json', '.mjs', '.ts'].includes(ext))
         return require(reqPath);
-      else readFileSync(reqPath, 'utf-8');
+      else return readFileSync(reqPath, 'utf-8');
     },
     ...values,
     console,
