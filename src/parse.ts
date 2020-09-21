@@ -1,6 +1,6 @@
 import vm from 'vm';
 import path from 'path';
-import fs from 'fs';
+import fs, { readFileSync } from 'fs';
 import { replaceAsync } from './utils';
 
 export type defaultOptionsType = {
@@ -40,9 +40,15 @@ const replaceCallback = (
   values = {
     require: (reqPath: string) => {
       options.base = path.isAbsolute(reqPath) ? process.cwd() : options.base;
+
       const rPath = path.join(options.base, reqPath);
-      if (fs.existsSync(rPath)) return require(rPath);
-      return require(reqPath);
+
+      if (fs.existsSync(rPath)) reqPath = rPath;
+
+      const { ext } = path.parse(reqPath);
+
+      if (['.js', '.json', '.mjs'].includes(ext)) return require(reqPath);
+      else readFileSync(reqPath, 'utf-8');
     },
     ...values,
     console,
