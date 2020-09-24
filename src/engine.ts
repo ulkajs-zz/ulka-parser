@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import parse, { defaultOptionsType } from './parse';
+import compile, { defaultOptionsType } from './compile';
 
 const engine = (globalOptions: any) => {
   return async (
@@ -10,7 +10,7 @@ const engine = (globalOptions: any) => {
   ) => {
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
-      const parsed = await parse(
+      const parsed = await compile(
         content,
         { ...globalOptions, ...options },
         { base: path.dirname(filePath), logError: false },

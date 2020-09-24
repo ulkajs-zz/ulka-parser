@@ -1,4 +1,4 @@
-import parse from './parse';
+import compile from './compile';
 import engine from './engine';
 
-export { parse, engine };
+export { compile, engine };

@@ -69,7 +69,14 @@ const replaceCallback = (
 
   let dataToReturn = await result;
 
-  if (Array.isArray(dataToReturn)) dataToReturn = dataToReturn.join('');
+  if (Array.isArray(dataToReturn)) {
+    let str = '';
+    for (let i = 0; i < dataToReturn.length; i++) {
+      const el = await dataToReturn[i];
+      str += el;
+    }
+    dataToReturn = str;
+  }
 
   return dataToReturn || '';
 };

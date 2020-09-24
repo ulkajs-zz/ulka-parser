@@ -3,7 +3,7 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  collectCoverageFrom: ['src/parse.ts', 'src/utils.ts', 'src/index.ts'],
+  collectCoverageFrom: ['src/compile.ts', 'src/utils.ts', 'src/index.ts'],
   coverageThreshold: {
     global: {
       branches: 100,

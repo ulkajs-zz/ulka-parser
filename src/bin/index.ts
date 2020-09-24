@@ -2,7 +2,7 @@
 
 import path from 'path';
 import fs from 'fs';
-import parseUlka from '../parse';
+import compile from '../compile';
 
 const args = process.argv.splice(2);
 
@@ -53,7 +53,7 @@ if (fs.statSync(templatePath).isDirectory()) {
 
 async function generateHtml(templatePath: string, outputPath: string) {
   const ulkaTemplate = fs.readFileSync(templatePath, 'utf-8');
-  const htmlTemplate = await parseUlka(ulkaTemplate);
+  const htmlTemplate = await compile(ulkaTemplate);
   fs.writeFileSync(outputPath, htmlTemplate.trim());
 }
 
