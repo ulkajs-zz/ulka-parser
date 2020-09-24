@@ -55,7 +55,8 @@ describe('parse funcion', () => {
         {% const name = "Roshan Acharya" %}
         {% name %}
       `;
-      expect((await compile(template)).trim()).toBe('Roshan Acharya');
+      const value = await compile(template);
+      expect(value!.trim()).toBe('Roshan Acharya');
     });
   });
 
@@ -110,8 +111,12 @@ describe('parse funcion', () => {
     });
   });
 
-  describe('asynchoronous array', () => {
-    test('should return string of value', async () => {
+  describe('array', () => {
+    test('should return string by joining members', async () => {
+      expect(await compile(`{% data %}`, { data: [1, 2, 3] })).toBe('123');
+    });
+
+    test('should return string for array with async members', async () => {
       const arrayOfdata = [];
       for (let i = 0; i < 5; i++) {
         arrayOfdata.push(new Promise(resolve => resolve('Hello World')));

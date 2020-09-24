@@ -13,7 +13,7 @@ const defaultOptions = {
   logError: true,
 };
 
-async function parser(
+async function compiler(
   ulkaTemplate: string,
   values = {},
   options: defaultOptionsType = defaultOptions,
@@ -81,4 +81,4 @@ const replaceCallback = (
   return dataToReturn || '';
 };
 
-export default parser;
+export default compiler;
