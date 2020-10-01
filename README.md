@@ -79,7 +79,7 @@ index.ulka
 
 <div>
     {% 
-        data.map(lang => {
+        languages.map(lang => {
             return `<h1>I Love ${lang.name} (${lang.short}).</h1>`
         })
     %}
