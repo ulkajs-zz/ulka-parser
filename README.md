@@ -89,8 +89,8 @@ index.ulka
 index.html
 ```html
 <div>
-    <h1>I Love javascript (js)</h1>
-    <h1>I Love typescript (ts)</h1>
+    <h1>I Love javascript (js).</h1>
+    <h1>I Love typescript (ts).</h1>
 </div>
 ```
 
