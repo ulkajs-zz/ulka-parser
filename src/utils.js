@@ -27,6 +27,7 @@ function customRequire(requirePath, options) {
 
 /**
  * Context to provide inside vm
+ *
  * @param {Object} values
  * @param {Object} options
  * @return {Object} context
@@ -39,7 +40,32 @@ function context(values, options) {
   }
 }
 
+/**
+ * Process args value and return value of given option
+ *
+ * @param {String} option
+ * @param {String[]} args
+ * @return {String|Boolean}
+ */
+function processArgs(option, args) {
+  const indexOfOption = args.indexOf(option)
+
+  // If options doesn't exist on args then return false
+  if (indexOfOption === -1) {
+    return false
+  }
+
+  // If option's index + 1 exists then return that value
+  // else return true
+  if (args[indexOfOption + 1]) {
+    return args[indexOfOption + 1]
+  } else {
+    return true
+  }
+}
+
 module.exports = {
   customRequire,
-  context
+  context,
+  processArgs
 }
