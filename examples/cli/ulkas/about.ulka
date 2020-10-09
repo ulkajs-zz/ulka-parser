@@ -1,3 +1,0 @@
-{% const page = "about" %}
-
-{% page %}
