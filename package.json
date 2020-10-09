@@ -1,23 +1,19 @@
 {
   "name": "ulka-parser",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Templating engine for ulka static site generator",
-  "main": "./dist/index.js",
-  "type": "./dist/index.d.ts",
+  "main": "./src/index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc",
     "eslint": "eslint .",
-    "prettier": "prettier \"**/*.ts\"",
-    "prettier:write": "prettier --write \"**/*.ts\"",
+    "prettier": "prettier \"**/*.js\"",
+    "prettier:fix": "prettier --write \"**/*.js\"",
     "eslint:fix": "eslint . --fix",
     "lint-staged": "lint-staged",
-    "example:parse": "node examples/parse",
-    "example:cli": "node dist/bin/index.js --template examples/cli --output examples/cli/output",
-    "prepublishOnly": "npm run build && npm run eslint && npm test"
+    "prepublishOnly": "npm run eslint && npm test"
   },
   "bin": {
-    "ulka-parser": "dist/bin/index.js"
+    "ulka-parser": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,23 +25,15 @@
     "url": "https://github.com/ulkajs/ulka-parser/issues"
   },
   "homepage": "https://github.com/ulkajs/ulka-parser#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^26.0.10",
-    "@types/node": "^14.6.0",
-    "eslint": "^7.4.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
+    "@types/jest": "^26.0.14",
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.5",
-    "jest": "^26.1.0",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
-    "ts-jest": "^26.2.0",
-    "typescript": "^3.9.7"
+    "husky": "^4.3.0",
+    "jest": "^26.5.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
   }
 }

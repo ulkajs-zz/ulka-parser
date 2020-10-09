@@ -14,6 +14,7 @@
 ## 🚀 Usage
 
 ### ClI
+
 ```bash
 npx ulka-parser --t /path/to/template/folder/or/file --o /path/to/output/folder
 
@@ -24,24 +25,27 @@ ulka-parser --t /path/to/template/folder/or/file --o /path/to/output/folder
 ```
 
 ### Javascript Api
+
 ```bash
 npm i ulka-parser
 ```
 
 ```js
-const { compile } = require('ulka-parser')
+const { render } = require("ulka-parser")
 
 const template = `Hello, I am {% name %}`
 
-compile(template, { name: "Roshan Acharya" }).then(console.log)
+const data = render(template, { name: "Roshan Acharya" })
+console.log(data)
 // Hello, I am Roshan Acharya
 ```
 
-
 ## Template Guide
-You can write nodejs code inside `{%  %}` in ulka template.
+
+You can write nodejs code inside `{% %}` in ulka template.
 
 index.ulka
+
 ```html
 {% const name = "Roshan Acharya".toUpperCase() %}
 
@@ -49,6 +53,7 @@ index.ulka
 ```
 
 index.html
+
 ```html
 <h1>ROSHAN ACHARYA</h1>
 ```
@@ -56,12 +61,15 @@ index.html
 ### Variables
 
 index.ulka
+
 ```js
 {% const name = "I Love Javascript" %}
 
 {% name %}
 ```
+
 index.html
+
 ```html
 I Love Javascript
 ```
@@ -69,34 +77,29 @@ I Love Javascript
 ### Loops
 
 index.ulka
-```html
-{% 
-    const languages = [
-        { name: "javascript", short: "js" },
-        { name: "typescript", short: "ts" },
-    ];
-%}
+
+```
+{% const languages = [ { name: "javascript", short: "js" }, { name:
+"typescript", short: "ts" }, ]; %}
 
 <div>
-    {% 
-        languages.map(lang => {
-            return `<h1>I Love ${lang.name} (${lang.short}).</h1>`
-        })
-    %}
+  {% languages.map(lang => `<h1>I Love ${lang.name} (${lang.short}).</h1>`) %}
 </div>
 ```
 
 index.html
+
 ```html
 <div>
-    <h1>I Love javascript (js).</h1>
-    <h1>I Love typescript (ts).</h1>
+  <h1>I Love javascript (js).</h1>
+  <h1>I Love typescript (ts).</h1>
 </div>
 ```
 
 ### Conditionals
 
 index.ulka
+
 ```js
 {% const iAmWinner = true %}
 
@@ -104,6 +107,7 @@ index.ulka
 ```
 
 index.html
+
 ```
 I am Winner
 ```
@@ -119,20 +123,20 @@ I am Winner
 ## Ulka parser with express
 
 ```js
-const express = require('express');
-const { engine } = require('ulka-parser')
+const express = require("express")
+const { engine } = require("ulka-parser")
 
-const app = express();
+const app = express()
 
-app.engine('ulka', engine({ logError: true }));
-app.set('views', './views'); 
-app.set('view engine', 'ulka'); 
+app.engine("ulka", engine())
+app.set("views", "./views")
+app.set("view engine", "ulka")
 
-app.get('/', (req, res) => {
-    res.render('index', { name: "Roshan Acharya" })
+app.get("/", (req, res) => {
+  res.render("index", { name: "Roshan Acharya" })
 })
 
 app.listen(3000, () => {
-  console.log('Server listening on port 3000');
-});
+  console.log("Server listening on port 3000")
+})
 ```
