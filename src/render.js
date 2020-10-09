@@ -2,7 +2,7 @@ const vm = require("vm")
 const { context } = require("./utils")
 
 /**
- * Reaplce javascript inside ulka-syntax with value
+ * Ulka template to html
  *
  * @param {String} template
  * @param {Object} values
