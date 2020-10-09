@@ -31,7 +31,7 @@ function customRequire(requirePath, options) {
  * Context to provide inside vm
  *
  * @param {Object} values
- * @param {Object} options
+ * @param {Options} options
  * @return {Object} context
  */
 function context(values, options) {

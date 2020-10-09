@@ -1,12 +1,14 @@
 const vm = require("vm")
 const { context } = require("./utils")
 
+/** @typedef {{base: String}} Options */
+
 /**
  * Ulka template to html
  *
  * @param {String} template
  * @param {Object} values
- * @param {Object} options
+ * @param {Options} options
  * @return {String}
  */
 function render(template, values, options) {
