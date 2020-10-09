@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "eslint": "eslint .",
-    "prettier": "prettier \"**/*.ts\"",
-    "prettier:fix": "prettier --write \"**/*.ts\"",
+    "prettier": "prettier \"**/*.js\"",
+    "prettier:fix": "prettier --write \"**/*.js\"",
     "eslint:fix": "eslint . --fix",
     "lint-staged": "lint-staged",
     "prepublishOnly": "npm run eslint && npm test"
@@ -25,7 +25,6 @@
     "url": "https://github.com/ulkajs/ulka-parser/issues"
   },
   "homepage": "https://github.com/ulkajs/ulka-parser#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "eslint": "^7.10.0",

@@ -2,7 +2,6 @@
 /examples
 /.github
 /coverage
-/src
 .prettierrc
 .prettierignore
 .eslintignore
@@ -11,3 +10,5 @@
 .lintstagedrc
 jest.config.js
 tsconfig.json
+CHANGELOG.md
+CONTRIBTING.md
