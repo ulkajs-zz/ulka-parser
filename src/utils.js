@@ -14,14 +14,16 @@ function customRequire(requirePath, options) {
 
   const rPath = path.join(options.base, requirePath)
 
-  if (fs.existsSync(rPath)) requirePath = rPath
+  if (!fs.existsSync(rPath)) {
+    return require(requirePath)
+  }
 
-  const { ext } = path.parse(requirePath)
+  const { ext } = path.parse(rPath)
 
   if ([".js", ".mjs", ".json"].includes(ext)) {
-    return require(requirePath)
+    return require(rPath)
   } else {
-    return fs.readFileSync(requirePath, "utf-8")
+    return fs.readFileSync(rPath, "utf-8")
   }
 }
 
