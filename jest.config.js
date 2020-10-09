@@ -1,6 +1,6 @@
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: ["src/compile.js", "src/utils.js", "src/index.js"],
+  collectCoverageFrom: ["src/render.js", "src/utils.js", "src/index.js"],
   coverageThreshold: {
     global: {
       branches: 100,
