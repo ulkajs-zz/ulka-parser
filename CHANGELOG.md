@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.0
+
+- Drop support for async inside ulka
+- Typescript to javascript
+
 ## v0.3.0
 
 - Array with async members returns a string with waited value.
