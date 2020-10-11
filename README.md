@@ -79,8 +79,7 @@ I Love Javascript
 index.ulka
 
 ```
-{% const languages = [ { name: "javascript", short: "js" }, { name:
-"typescript", short: "ts" }, ]; %}
+{% const languages = [ { name: "javascript", short: "js" }, { name: "typescript", short: "ts" }, ]; %}
 
 <div>
   {% languages.map(lang => `<h1>I Love ${lang.name} (${lang.short}).</h1>`) %}
