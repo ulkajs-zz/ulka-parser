@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.1
+
+- BugFix: use of declared variable throws error.
+
 ## v0.4.0
 
 - Drop support for async inside ulka

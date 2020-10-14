@@ -20,6 +20,14 @@ describe("Render function", () => {
       )
     })
 
+    test("Declared variable should work", () => {
+      const template = `
+        {% const name = "Roshan Acharya" %}
+        {% name %}
+      `
+      expect(render(template).trim()).toBe("Roshan Acharya")
+    })
+
     test("Should return empty string for undefined", () => {
       expect(render("{% undefined %}")).toBe("")
     })

@@ -25,10 +25,10 @@ function render(template, values, options) {
     javascript = javascript.replace(/const |let /gs, "var ")
 
     // Variables available inside javascript
-    const newContext = context(values, options)
+    values = context(values, options)
 
     // Run javascript in context
-    let result = vm.runInNewContext(javascript, newContext)
+    let result = vm.runInNewContext(javascript, values)
 
     // If the result is array then join the array by empty string
     if (Array.isArray(result)) {
