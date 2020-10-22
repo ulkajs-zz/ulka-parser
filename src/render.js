@@ -21,7 +21,6 @@ function render(template, values, options) {
       return args[0].slice(1)
     }
 
-    // vm doesn't support const and let
     javascript = javascript.replace(/const |let /gs, "var ")
 
     // Variables available inside javascript
